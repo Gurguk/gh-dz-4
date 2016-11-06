@@ -51,9 +51,9 @@ class UniversityModel
         return $result;
     }
 
-    public function findAll()
+    public function findAll($limit = 100, $offset = 0)
     {
-        $query = 'SELECT * FROM university WHERE 1';
+        $query = 'SELECT * FROM university WHERE 1 LIMIT ' . $limit . ' OFFSET ' . $offset;
         $this->db->setQuery($query);
         $result = $this->db->getObjectList();
         return $result;
