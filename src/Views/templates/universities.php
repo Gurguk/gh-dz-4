@@ -3,7 +3,14 @@
 $html = "<!doctype html>
         <html>
         <body>
-        <div><a href='index.php?controller=university&action=create'><button>Додати новий</button></a></div>";
+        <div><a href='index.php'><< Головна</a></div><br/>
+        <div><a href='index.php?controller=university&action=create'><button>Додати новий</button></a></div>
+        <div><br />
+            <form action='index.php?controller=university&action=index' method='post'>
+                <input type='text' name='search' value='" . $_POST['search'] . "' />
+                <input type='submit' value='Пошук' />
+            </form>
+        </div>";
 $html .= "<table>
             <thead>
                 <tr>

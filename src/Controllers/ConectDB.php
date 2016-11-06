@@ -19,6 +19,7 @@ class ConectDB
         if (!$this->mysqli) {
             return false;
         }
+        $this->mysqli->set_charset("utf8");
 
     }
 

@@ -4,7 +4,7 @@ namespace Models;
 
 use Controllers\ConectDB;
 
-class UniversityModel
+class UniversityModel implements ModelsInterface
 {
     private $db;
 
@@ -12,6 +12,7 @@ class UniversityModel
     {
         $this->db = new ConectDB();
         $this->init();
+        $this->addDemo();
 
     }
     private function init()
@@ -45,7 +46,7 @@ class UniversityModel
 
     public function findOne($id)
     {
-        $query = 'SELECT * FROM university WHERE id=' . $id;
+        $query = 'SELECT * FROM university WHERE id=' . $id . " ORDER BY ID";
         $this->db->setQuery($query);
         $result = $this->db->getObject();
         return $result;
@@ -53,7 +54,11 @@ class UniversityModel
 
     public function findAll($limit = 100, $offset = 0)
     {
-        $query = 'SELECT * FROM university WHERE 1 LIMIT ' . $limit . ' OFFSET ' . $offset;
+        if($_POST['search']!='')
+            $like = ' AND university_name LIKE "%' . $_POST['search'] . '%"';
+        else
+            $like = '';
+        $query = 'SELECT * FROM university WHERE 1 ' . $like . ' LIMIT ' . $limit . ' OFFSET ' . $offset;
         $this->db->setQuery($query);
         $result = $this->db->getObjectList();
         return $result;

@@ -8,12 +8,15 @@
 
 namespace Controllers;
 
+use Models\StudentModel;
 
 class StudentController
 {
+    private $student;
+
     public function __construct()
     {
-
+        $this->student = new StudentModel();
     }
 
 

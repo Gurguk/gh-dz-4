@@ -4,6 +4,7 @@ $do = $data['do'];
 $html = "<!doctype html>
         <html>
         <body>
+        <div><a href='index.php'><< Головна</a></div><br/>
         <div><a href='index.php?controller=university&action=index'><button>Повернутись до списку</button></a></div>
         <div>";
 switch ($do){
