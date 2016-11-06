@@ -1,7 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: roman
- * Date: 03.11.16
- * Time: 21:03
- */
+require __DIR__.'/vendor/autoload.php';
+
+$controllerName = isset($_GET['controller']) ? $_GET['controller'] : 'university';
+$controllerName = ucfirst($controllerName) . 'Controller';
+$controllerName = 'Controllers\\' . $controllerName;
+
+$controller = new $controllerName();
+
+$actionName = isset($_GET['action']) ? $_GET['action'] : 'index';
+$actionName = 'action' . $actionName;
+$response = $controller->$actionName();
+echo $response;
