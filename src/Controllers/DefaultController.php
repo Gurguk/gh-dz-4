@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: roman
  * Date: 06.11.16
- * Time: 21:15
+ * Time: 21:15.
  */
 
 namespace Controllers;
@@ -21,6 +21,6 @@ class DefaultController
 
     public function actionIndex()
     {
-        return $this->view->display('default', array("default"=>''));
+        return $this->view->display('default', array('default' => ''));
     }
 }

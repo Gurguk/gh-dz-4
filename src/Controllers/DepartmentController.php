@@ -2,7 +2,6 @@
 
 namespace Controllers;
 
-
 use Models\DepartmentModel;
 use Views\Render;
 
@@ -20,9 +19,9 @@ class DepartmentController
 
     public function actionIndex()
     {
-        $data =  $this->department->findAll();
+        $data = $this->department->findAll();
 
-        return $this->view->display('departments', array("departments"=>$data));
+        return $this->view->display('departments', array('departments' => $data));
     }
 
     public function actionDelete()
@@ -34,14 +33,16 @@ class DepartmentController
 
     public function actionShow()
     {
-        $data =  $this->department->findOne($_GET['id']);
-        return $this->view->display('department', array("department"=>$data, "do"=>"show"));
+        $data = $this->department->findOne($_GET['id']);
+
+        return $this->view->display('department', array('department' => $data, 'do' => 'show'));
     }
 
     public function actionEdit()
     {
-        $data =  $this->department->findOne($_GET['id']);
-        return $this->view->display('department', array("department"=>$data, "do"=>$_GET['action']));
+        $data = $this->department->findOne($_GET['id']);
+
+        return $this->view->display('department', array('department' => $data, 'do' => $_GET['action']));
     }
 
     public function actionUpdate()
@@ -55,16 +56,15 @@ class DepartmentController
 
     public function actionCreate()
     {
-        return $this->view->display('department', array("department"=>'', "do"=>"create"));
+        return $this->view->display('department', array('department' => '', 'do' => 'create'));
     }
 
     public function actionAdd()
     {
         $data = $_POST['send'];
         $id = $this->department->create($data);
-        $url = str_replace('action=create', 'action=show&id=' . $id, $_SERVER['HTTP_REFERER']);
+        $url = str_replace('action=create', 'action=show&id='.$id, $_SERVER['HTTP_REFERER']);
         header('Location: '.$url);
         exit();
     }
-
 }

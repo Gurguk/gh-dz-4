@@ -2,10 +2,8 @@
 
 namespace Models;
 
-
 interface ModelsInterface
 {
-
     public function create(array $entityData);
 
     public function update(array $entityData);

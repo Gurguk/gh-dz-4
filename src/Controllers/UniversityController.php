@@ -19,8 +19,9 @@ class UniversityController
 
     public function actionIndex()
     {
-        $data =  $this->university->findAll();
-        return $this->view->display('universities', array("universities"=>$data));
+        $data = $this->university->findAll();
+
+        return $this->view->display('universities', array('universities' => $data));
     }
 
     public function actionDelete()
@@ -32,14 +33,16 @@ class UniversityController
 
     public function actionShow()
     {
-        $data =  $this->university->findOne($_GET['id']);
-        return $this->view->display('university', array("university"=>$data, "do"=>"show"));
+        $data = $this->university->findOne($_GET['id']);
+
+        return $this->view->display('university', array('university' => $data, 'do' => 'show'));
     }
 
     public function actionEdit()
     {
-        $data =  $this->university->findOne($_GET['id']);
-        return $this->view->display('university', array("university"=>$data, "do"=>$_GET['action']));
+        $data = $this->university->findOne($_GET['id']);
+
+        return $this->view->display('university', array('university' => $data, 'do' => $_GET['action']));
     }
 
     public function actionUpdate()
@@ -53,14 +56,14 @@ class UniversityController
 
     public function actionCreate()
     {
-        return $this->view->display('university', array("university"=>'', "do"=>"create"));
+        return $this->view->display('university', array('university' => '', 'do' => 'create'));
     }
 
     public function actionAdd()
     {
         $data = $_POST['send'];
         $id = $this->university->create($data);
-        $url = str_replace('action=create', 'action=show&id=' . $id, $_SERVER['HTTP_REFERER']);
+        $url = str_replace('action=create', 'action=show&id='.$id, $_SERVER['HTTP_REFERER']);
         header('Location: '.$url);
         exit();
     }

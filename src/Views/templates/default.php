@@ -1,4 +1,5 @@
 <?php
+
 $html = '<!doctype html>
         <html>
         <body>

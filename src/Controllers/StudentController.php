@@ -3,13 +3,14 @@
  * Created by PhpStorm.
  * User: roman
  * Date: 06.11.16
- * Time: 17:30
+ * Time: 17:30.
  */
 
 namespace Controllers;
 
 use Models\StudentModel;
 use Views\Render;
+
 class StudentController
 {
     private $student;
@@ -22,11 +23,11 @@ class StudentController
         $this->view = new Render();
     }
 
-
     public function actionIndex()
     {
-        $data =  $this->student->findAll();
-        return $this->view->display('students', array("student"=>$data));
+        $data = $this->student->findAll();
+
+        return $this->view->display('students', array('student' => $data));
     }
 
     public function actionDelete()
@@ -38,14 +39,16 @@ class StudentController
 
     public function actionShow()
     {
-        $data =  $this->student->findOne($_GET['id']);
-        return $this->view->display('student', array("student"=>$data, "do"=>"show"));
+        $data = $this->student->findOne($_GET['id']);
+
+        return $this->view->display('student', array('student' => $data, 'do' => 'show'));
     }
 
     public function actionEdit()
     {
-        $data =  $this->student->findOne($_GET['id']);
-        return $this->view->display('student', array("student"=>$data, "do"=>$_GET['action']));
+        $data = $this->student->findOne($_GET['id']);
+
+        return $this->view->display('student', array('student' => $data, 'do' => $_GET['action']));
     }
 
     public function actionUpdate()
@@ -59,16 +62,15 @@ class StudentController
 
     public function actionCreate()
     {
-        return $this->view->display('student', array("student"=>'', "do"=>"create"));
+        return $this->view->display('student', array('student' => '', 'do' => 'create'));
     }
 
     public function actionAdd()
     {
         $data = $_POST['send'];
         $id = $this->student->create($data);
-        $url = str_replace('action=create', 'action=show&id=' . $id, $_SERVER['HTTP_REFERER']);
+        $url = str_replace('action=create', 'action=show&id='.$id, $_SERVER['HTTP_REFERER']);
         header('Location: '.$url);
         exit();
     }
-
 }
