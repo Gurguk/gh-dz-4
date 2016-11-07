@@ -15,7 +15,6 @@ class UniversityController
     {
         $this->university = new UniversityModel();
         $this->view = new Render();
-
     }
 
     public function actionIndex()

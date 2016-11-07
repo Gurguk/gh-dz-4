@@ -12,7 +12,6 @@ class UniversityModel implements ModelsInterface
     {
         $this->db = new ConectDB();
         $this->init();
-        $this->addDemo();
 
     }
     private function init()
