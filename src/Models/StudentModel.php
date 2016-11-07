@@ -21,7 +21,7 @@ class StudentModel
         $this->init();
     }
 
-    private function init()
+    public function init()
     {
         $query = "CREATE TABLE IF NOT EXISTS student (
           id int(11) NOT NULL AUTO_INCREMENT,
@@ -34,7 +34,7 @@ class StudentModel
         ) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
 
         $this->db->setQuery($query);
-        return $this->db->executeQuery();
+        return $query;
     }
 
     public function addDemo()
@@ -44,9 +44,10 @@ class StudentModel
             $rows[] = $this->demoRow();
         }
 
-        $query = "INSERT INTO student (department_id, first_name, last_name, email, phone) VALUES ".implode(',',$rows);
+        $query = "INSERT INTO student (department_id, first_name, last_name, email, phone) VALUES " . PHP_EOL . implode(', ' . PHP_EOL, $rows);
         $this->db->setQuery($query);
-        return $this->db->executeQuery();
+        $this->db->executeQuery();
+        return $query;
     }
 
     private function demoRow()

@@ -14,7 +14,7 @@ class UniversityModel implements ModelsInterface
         $this->init();
 
     }
-    private function init()
+    public function init()
     {
         $query = "CREATE TABLE IF NOT EXISTS university (
           id int(11) NOT NULL AUTO_INCREMENT,
@@ -25,7 +25,7 @@ class UniversityModel implements ModelsInterface
         ) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
 
         $this->db->setQuery($query);
-        return $this->db->executeQuery();
+        return $query;
     }
 
     public function addDemo()
@@ -40,7 +40,8 @@ class UniversityModel implements ModelsInterface
                 ('Черкаський факультет Національного університету «Одеська юридична академія»', 'Черкаси', 'www.onua.ck.ua')
         ";
         $this->db->setQuery($query);
-        return $this->db->executeQuery();
+        $this->db->executeQuery();
+        return $query;
     }
 
     public function findOne($id)

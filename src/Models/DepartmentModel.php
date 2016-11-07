@@ -13,7 +13,7 @@ class DepartmentModel implements ModelsInterface
         $this->db = new ConectDB();
         $this->init();
     }
-    private function init()
+    public function init()
     {
         $query = "CREATE TABLE IF NOT EXISTS department (
           id int(11) NOT NULL AUTO_INCREMENT,
@@ -23,7 +23,7 @@ class DepartmentModel implements ModelsInterface
         ) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
 
         $this->db->setQuery($query);
-        return $this->db->executeQuery();
+        return $query;
     }
 
     public function addDemo()
@@ -45,16 +45,17 @@ class DepartmentModel implements ModelsInterface
             '6' => array('Цивільна безпека', 'Психологія', 'Інше'),
             '7' => array('Цивільна безпека', 'Право')
         );
-        $query = "INSERT INTO department (university_id, department_name) VALUES ";
+        $query = "INSERT INTO department (university_id, department_name) VALUES " . PHP_EOL;
         $rows = array();
         foreach ($names as $key=>$value){
             foreach ($value as $item){
                 $rows[] = "(" . $key . ", '" . $item . "')";
             }
         }
-        $query .= implode(', ',$rows);
+        $query .= implode(', ' . PHP_EOL,$rows);
         $this->db->setQuery($query);
-        return $this->db->executeQuery();
+        $this->db->executeQuery();
+        return $query;
     }
 
     public function findOne($id)
