@@ -1,16 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: roman
- * Date: 06.11.16
- * Time: 23:56.
- */
 
 namespace Models;
 
 use Controllers\ConectDB;
 
-class StudentModel
+class StudentModel implements ModelsInterface
 {
     private $db;
 

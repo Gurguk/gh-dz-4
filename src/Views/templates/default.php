@@ -10,6 +10,7 @@ $html = '<!doctype html>
         <li><a href="index.php?controller=department&action=index">Кафедри</li>
         <li><a href="index.php?controller=student&action=index">Студенти</li>
         <li><a href="index.php?controller=teacher&action=index">Викладачі</li>
+        <li><a href="index.php?controller=discipline&action=index">Дисципліни</li>
         </ul>
         </body>
         </html>';
