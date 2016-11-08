@@ -33,6 +33,7 @@ class StudentModel
         ) ENGINE=MyISAM DEFAULT CHARSET=utf8;';
 
         $this->db->setQuery($query);
+        $this->db->executeQuery();
 
         return $query;
     }

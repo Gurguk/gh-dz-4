@@ -19,15 +19,9 @@ class DemodataController
 
     public function __construct()
     {
-        //        echo 123;
-//        die;
         $this->university = new UniversityModel();
-//        $this->university->addDemo();
         $this->department = new DepartmentModel();
-//        $this->department->addDemo();
         $this->student = new StudentModel();
-//        $this->student->addDemo();
-
         $this->view = new Render();
     }
 
