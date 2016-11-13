@@ -2,7 +2,7 @@
 
 namespace Controllers;
 
-use Models\DepartmentModel;
+use Repository\DepartmentRepository;
 use Views\Render;
 
 class DepartmentController
@@ -13,7 +13,7 @@ class DepartmentController
 
     public function __construct()
     {
-        $this->department = new DepartmentModel();
+        $this->department = new DepartmentRepository();
         $this->view = new Render();
     }
 

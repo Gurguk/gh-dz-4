@@ -1,42 +1,52 @@
 <?php
 
-namespace Models;
+namespace Repository;
 
-use Controllers\ConectDB;
+use Controllers\ConnectDB;
 
-class DisciplineModel
+class DisciplineRepository
 {
     private $db;
 
-    public function __construct()
+    public function __construct($id = 0)
     {
-        $this->db = new ConectDB();
+        $dbp = ConnectDB::getInstance();
+        $this->db = $dbp->getConnection();
         $this->init();
+//        if($id!=0)
+//            $this->findOne($id);
     }
 
     public function init()
     {
-        $query = 'CREATE TABLE IF NOT EXISTS discipline (
+        $sql = 'CREATE TABLE IF NOT EXISTS discipline (
           id int(11) NOT NULL AUTO_INCREMENT,
           department_id int(11) NOT NULL,
           discipline_name VARCHAR (255) NOT NULL,
            PRIMARY KEY (`id`)
         ) ENGINE=MyISAM DEFAULT CHARSET=utf8;';
+        try {
+            $this->db->query($sql);
+        } catch (\PDOException $error) {
+            echo __LINE__;
+            echo $error->getMessage();
+        }
 
-        $this->db->setQuery($query);
-        $this->db->executeQuery();
-
-        return $query;
+        return $sql;
     }
 
     public function addDemo()
     {
         $rows = $this->demoRows();
-        $query = 'INSERT INTO discipline (department_id, discipline_name) VALUES '.PHP_EOL.implode(', '.PHP_EOL, $rows);
-        $this->db->setQuery($query);
-        $this->db->executeQuery();
+        $sql = 'INSERT INTO discipline (department_id, discipline_name) VALUES '.PHP_EOL.implode(', '.PHP_EOL, $rows);
+        try {
+            $this->db->query($sql);
+        } catch (\PDOException $error) {
+            echo __LINE__;
+            echo $error->getMessage();
+        }
 
-        return $query;
+        return $sql;
     }
 
     public function demoRows()
@@ -58,18 +68,18 @@ class DisciplineModel
         'Менеджмент', 'Системне програмування і операційні системи', 'Захист інформації в інформаційних управляючих системах',
         'Проектування та обслуговування локальних обчислювальних мереж', 'Орг. і функціон. інф.-обчис. комплексів та систем',
         'КП з Комп. мереж (локальні, корпоративні, глобальні)', 'Проектування і розробка інформаційних систем', 'Правове регулювання у сфері інформаційних технологій',
-        'Мережні Java-технології', 'Правове регулювання у сфері інформаційних технологій', 'Цивільна оборона','Економіка галузі',
+        'Мережні Java-технології', 'Правове регулювання у сфері інформаційних технологій', 'Цивільна оборона', 'Економіка галузі',
         'Охорона праці в галузі', 'Засоби мультимедія в нових інформац. технологіях', 'Програмування для Internet', 'Автоматизовані системи комп`ютеризованної обробки',
         'Менеджмент', 'Виробнича практика', 'Дипломування', 'Нейронні мережі', 'Інформаційна безпека в мережі Internet',
         'Інженерія програмного забезпечення', 'Професійні функції і задачі спеціаліста', 'Інтелектуальна власність', 'САПР програмного забезпечення',
-        'Цифрова обробка сигналів', 'Геоінформаційні системи', 'Надійність функціонування інформаційних систем' );
-        $query = "SELECT id FROM department WHERE 1";
+        'Цифрова обробка сигналів', 'Геоінформаційні системи', 'Надійність функціонування інформаційних систем', );
+        $query = 'SELECT id FROM department WHERE 1';
         $this->db->setQuery($query);
         $department_temp_list = $this->db->getArrayList();
         $result = array();
-        foreach ($discipline_list_name as $name ){
-            $department = $department_temp_list[rand(0,count($department_temp_list))]['id'];
-            $result[] = "(" . $department . ", '" . addslashes($name) . "')";
+        foreach ($discipline_list_name as $name) {
+            $department = $department_temp_list[rand(0, count($department_temp_list))]['id'];
+            $result[] = '('.$department.", '".addslashes($name)."')";
         }
 
         return $result;

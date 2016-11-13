@@ -15,7 +15,7 @@ switch ($do) {
                   <p> Сайт: ' .$university->university_site.'</p>';
         break;
     case 'edit':
-        $html .= "<form action='index.php?controler=university&action=update' method='post'>
+        $html .= "<form action='index.php?controller=university&action=update' method='post'>
               <p> Назва:<br/> <textarea name='send[name]' rows='5' cols='50'>" .$university->university_name."</textarea></p>
               <p> Місто: <input type='text' name='send[city]' value='" .$university->university_city."'/></p>
               <p> Сайт: <input type='text' name='send[site]' value='" .$university->university_site."'/></p>
@@ -24,7 +24,7 @@ switch ($do) {
               </form>";
         break;
     case 'create':
-        $html .= "<form action='index.php?controler=university&action=add' method='post'>
+        $html .= "<form action='index.php?controller=university&action=add' method='post'>
               <p> Назва:<br/> <textarea name='send[name]' rows='5' cols='50'></textarea></p>
               <p> Місто: <input type='text' name='send[city]' value=''/></p>
               <p> Сайт: <input type='text' name='send[site]' value=''/></p>

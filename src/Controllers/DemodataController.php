@@ -2,9 +2,9 @@
 
 namespace Controllers;
 
-use Models\UniversityModel;
-use Models\DepartmentModel;
-use Models\StudentModel;
+use Models\UniversityRepository;
+use Models\DepartmentRepository;
+use Models\StudentRepository;
 use Views\Render;
 
 class DemodataController
@@ -19,9 +19,9 @@ class DemodataController
 
     public function __construct()
     {
-        $this->university = new UniversityModel();
-        $this->department = new DepartmentModel();
-        $this->student = new StudentModel();
+        $this->university = new UniversityRepository();
+        $this->department = new DepartmentRepository();
+        $this->student = new StudentRepository();
         $this->view = new Render();
     }
 

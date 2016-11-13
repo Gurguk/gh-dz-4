@@ -5,8 +5,8 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
+            "Repository\\": "src/Repository",
             "Controllers\\": "src/Controllers",
-            "Models\\": "src/Models",
             "Views\\": "src/Views",
             "Sources\\": "scr"
         }

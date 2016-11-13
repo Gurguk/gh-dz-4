@@ -2,7 +2,7 @@
 
 namespace Controllers;
 
-use Models\DisciplineModel;
+use Repository\DisciplineRepository;
 use Views\Render;
 
 class DisciplineController
@@ -13,12 +13,11 @@ class DisciplineController
 
     public function __construct()
     {
-        $this->discipline = new DisciplineModel();
+        $this->discipline = new DisciplineRepository();
         $this->view = new Render();
     }
 
     public function actionIndex()
     {
-
     }
 }

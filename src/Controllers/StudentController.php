@@ -8,7 +8,7 @@
 
 namespace Controllers;
 
-use Models\StudentModel;
+use Repository\StudentRepository;
 use Views\Render;
 
 class StudentController
@@ -19,7 +19,7 @@ class StudentController
 
     public function __construct()
     {
-        $this->student = new StudentModel();
+        $this->student = new StudentRepository();
         $this->view = new Render();
     }
 

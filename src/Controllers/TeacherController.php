@@ -1,9 +1,8 @@
 <?php
 
-
 namespace Controllers;
 
-use Models\TeacherModel;
+use Repository\TeacherRepository;
 use Views\Render;
 
 class TeacherController
@@ -14,11 +13,9 @@ class TeacherController
 
     public function __construct()
     {
-        $this->teacher = new TeacherModel();
+        $this->teacher = new TeacherRepository();
         $this->view = new Render();
-
     }
-
 
     public function actionIndex()
     {

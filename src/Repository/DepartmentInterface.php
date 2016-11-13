@@ -1,8 +1,8 @@
 <?php
 
-namespace Models;
+namespace Repository;
 
-interface ModelsInterface
+interface DepartmentInterface
 {
     public function create(array $entityData);
 
@@ -13,4 +13,10 @@ interface ModelsInterface
     public function findOne($id);
 
     public function findAll($limit, $offset);
+
+    public function getName();
+
+    public function setName($name);
+
+    public function set();
 }

@@ -2,7 +2,7 @@
 
 namespace Controllers;
 
-use Models\UniversityModel;
+use Repository\UniversityRepository;
 use Views\Render;
 
 class UniversityController
@@ -13,7 +13,7 @@ class UniversityController
 
     public function __construct()
     {
-        $this->university = new UniversityModel();
+        $this->university = new UniversityRepository();
         $this->view = new Render();
     }
 
